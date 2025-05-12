@@ -1,4 +1,4 @@
-let SEED = "666";
+let SEED = "167";
 Nof1.SET_SEED(SEED);
 
 let experiment_configuration_function = (writer) => { return {
