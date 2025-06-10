@@ -1,12 +1,4 @@
-import {
-    random_array_element,
-    random_integer_up_to_excluding,
-    random_lower_case_letter, random_lower_case_letter_except
-} from "../Experimentation/Experimentation.js";
-
 import {Words} from "./Words.js";
-import {integer_partitions_of_fix_length} from "../numeric/integer_partition.js";
-import {all_array_combinations} from "../utils/arrays/all_array_combinations.js";
 
 export class Nouns extends Words {
     static static_words = [

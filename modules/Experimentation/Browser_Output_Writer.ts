@@ -173,7 +173,7 @@ export function BROWSER_EXPERIMENT(creator: (writer:Experiment_Output_Writer) =>
             finish_function:  (exp: Code_Experiment_Definition) => {
                 // @ts-ignore
                 document.removeEventListener("keydown", key_forwarder);
-                save_file_in_html("experimentdata.csv", exp.generate_csv_data());
+                save_file_in_html(cfg.experiment_name + ".csv", exp.generate_csv_data());
             }
         }
     );

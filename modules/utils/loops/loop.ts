@@ -31,7 +31,7 @@ export class Iterator<T> {
             f(element);
     }
 
-    do_with_counter(f: ((element:T, counter:Number) => void)) {
+    do_with_counter(f: ((element:T, counter:number) => void)) {
         for(let c = 0; c < this.array.length;c++) {
             f(this.array[c], c);
         }
@@ -84,6 +84,13 @@ export class Repeat {
         for(let c = 1; c <= this.counter;c++) {
             f(c);
         }
+    }
+
+    _do(f) {
+        for(let c = 1; c <= this.counter;c++) {
+            f(c);
+        }
+
     }
 
 

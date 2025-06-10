@@ -9,6 +9,25 @@ import {
 } from "../numeric/integer_partition.js";
 import {all_array_combinations} from "../utils/arrays/all_array_combinations.js";
 
+import {repeat_n_times} from "../utils/loops/loop.js";
+import {for_all_but_first} from "../utils/Loops.js";
+
+export type StringList_Formatter = (list: string[]) => string;
+
+export function camel_case_formatter(list: string[]):string {
+    let ret = [list[0].toLowerCase()];
+    for_all_but_first(list, e =>    {
+        ret.push(e[0].toUpperCase() + e.substring(1).toLowerCase());
+    });
+    return ret.join("");
+}
+
+export function snake_case_formatter(list: string[]):string {
+    let ret = [list[0].toLowerCase()];
+    for_all_but_first(list, e => ret.push(e[0].toUpperCase() + e.substring(1).toLowerCase()))
+    return ret.join("_");
+}
+
 export abstract class Words {
     words: string[];
 
@@ -45,6 +64,10 @@ export abstract class Words {
         return String(aString).charAt(0).toLowerCase() + String(aString).slice(1);
     }
 
+    generated_composite_identifier_from_number_of_words(number_of_words: number, style:StringList_Formatter) {
+        // let list = this.
+    }
+
     generate_composite_identifier_of_length(length:number) {
 
         if(length <= 5) {
@@ -60,13 +83,23 @@ export abstract class Words {
         return first_part + second_part;
     }
 
+    get_random_word() {
+        return random_array_element(this.words);
+    }
+
+    get_random_word_with_filter(f) {
+        return random_array_element(this.words.filter(f));
+    }
+
+    pull_random_word_with_filter(f) {
+        let ret = random_array_element(this.words.filter(f));
+        this.words.splice(this.words.indexOf(ret), 0);
+        return ret;
+    }
+
     get_random_word_of_length(length:number) {
         let w = this.words.filter(e => e.length == length);
         let ret = random_array_element(w);
-
-        if(ret==undefined)
-            throw "shit";
-
         return ret;
     }
 
@@ -85,6 +118,21 @@ export abstract class Words {
 
         return ret;
 
+    }
+
+    generate_formatted_composite_identifier_from_number_of_words(number_of_words:number, formatter: StringList_Formatter):string {
+        let words:string[] = repeat_n_times(number_of_words).and_collect(  e => this.get_random_word() );
+        let result = formatter(words);
+        return result;
+
+    }
+
+    generate_camelcase_identifier(number_of_words: number) {
+        // return repeat_n_times(list_length).and_collect(  e => this.get_random_word() );
+    }
+
+    generate_random_word_list(list_length: number) {
+        return repeat_n_times(list_length).and_collect(  e => this.get_random_word() );
     }
 
     replace_letters_starting_at(word:string, num_letters_to_replace, first_change_position:number):string[] {

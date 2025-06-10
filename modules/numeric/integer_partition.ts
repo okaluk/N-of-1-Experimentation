@@ -6,6 +6,18 @@ eg: (1) => (1)
     (4) => (1, 1, 1, 1), (1, 1, 2), (1, 2, 1), (1, 3), (2, 1, 1), (2, 2), (3, 1), (4)
  */
 
+
+import {iterate, repeat, repeat_} from "../utils/loops/loop.js";
+import {random_integer_up_to_excluding} from "../Experimentation/Experimentation.js";
+
+export function random_integer_partition(n:number, number_of_partitions):number[] {
+    let partitions:number[] = [];
+    repeat(number_of_partitions, n => partitions.push(1));
+    repeat(n - number_of_partitions, _ => partitions[random_integer_up_to_excluding(number_of_partitions)] += 1);
+
+    return partitions;
+}
+
 export function integer_partition_function(n:number):number[][] {
     let ret = [];
     if (n==0) return [];
