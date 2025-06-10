@@ -24,7 +24,7 @@ export function contains(collection:any[], element:any): boolean {
 
 export function cartesian_product(arr1, arr2, f) {
     for(let i = 0; i < arr1.length; i++) {
-        for(let j = 0; i < arr2.length; i++) {
+        for(let j = 0; j < arr2.length; j++) {
             f(arr1[i], arr2[j]);
         }
     }
