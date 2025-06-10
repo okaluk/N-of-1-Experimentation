@@ -158,13 +158,13 @@ export class Reaction_Time_Measurement extends Measurement_Type {
 
 export class Reaction_Time_Penalty_Measurement extends Measurement_Type {
 
-    penalty_miliseconds: number;
+    penalty_milliseconds: number;
     penalty_started:boolean = false;
     penalty_start_point = null;
 
     constructor(input_type: Experiment_Input_Type, penalty_seconds: number) {
         super(input_type);
-        this.penalty_miliseconds = penalty_seconds * 1000;
+        this.penalty_milliseconds = penalty_seconds * 1000;
     }
 
     demands_penalty():boolean {
@@ -186,7 +186,7 @@ export class Reaction_Time_Penalty_Measurement extends Measurement_Type {
 
     penalty_is_over() {
         let diff = (new Date().getTime().valueOf())-this.start_time;
-        return !this.penalty_started || diff >= this.penalty_miliseconds;
+        return !this.penalty_started || diff >= this.penalty_milliseconds;
     }
 
     start_measurement(task: Task) {
@@ -206,13 +206,13 @@ export class Time_To_Finish_Measurement extends Measurement_Type {
 
 export class Time_To_Finish_With_Time_Penalty_Measurement extends Time_To_Finish_Measurement {
 
-    penalty_miliseconds: number;
+    penalty_milliseconds: number;
     penalty_started:boolean = false;
     penalty_start_point = null;
 
     constructor(input_type: Experiment_Input_Type, penalty_seconds: number) {
         super(input_type);
-        this.penalty_miliseconds = penalty_seconds * 1000;
+        this.penalty_milliseconds = penalty_seconds * 1000;
     }
 
     demands_penalty():boolean {
@@ -234,7 +234,7 @@ export class Time_To_Finish_With_Time_Penalty_Measurement extends Time_To_Finish
 
     penalty_is_over() {
         let diff = (new Date().getTime().valueOf())-this.start_time;
-        return !this.penalty_started || diff >= this.penalty_miliseconds;
+        return !this.penalty_started || diff >= this.penalty_milliseconds;
     }
 
     start_measurement(task: Task) {
